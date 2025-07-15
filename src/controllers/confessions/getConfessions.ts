@@ -1,9 +1,10 @@
 import { Context } from "hono";
+import prisma from "../../helpers/prisma";
 
 export default async function getConfessions(c: Context) {
     try {
         // Get the confessions
-        const confessions = [{}];
+        const confessions = await prisma.confession.findMany();
 
         return c.json(confessions);
     } catch (e) {
