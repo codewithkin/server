@@ -36,6 +36,34 @@ model ConfessionComment {
   confession  Confession @relation(name: "ConfessionCommentRoot", fields: [confessionId], references: [id])
   confessionId  String
 
+  comments ConfessionCommentComment[] @relation(name: "ConfessionComment")
+
+  likes ConfessionCommentLike[] @relation(name: "ConfessionCommentLiked")
+
+  text  String
+
+  createdAt   DateTime @default(now())
+}
+
+model ConfessionCommentLike {
+  id  String @id @default(uuid())
+
+  creatorId String
+
+  comment  ConfessionComment @relation(name: "ConfessionCommentLiked", fields: [commentId], references: [id])
+  commentId  String
+
+  createdAt   DateTime @default(now())
+}
+
+model ConfessionCommentComment {
+   id  String @id @default(uuid())
+
+  creatorId String
+
+  comment  ConfessionComment @relation(name: "ConfessionComment", fields: [commentId], references: [id])
+  commentId  String
+
   createdAt   DateTime @default(now())
 }
 
