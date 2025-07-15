@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+model User {
+  id  String @id @default(uuid())
+  
+  username  String
+  confessions Confession[] @relation(name: "ConfessionOwner")
+
+  likes ConfessionLike[] @relation(name: "ConfessionLiker")
+  comments ConfessionComment[] @relation(name: "ConfessionComment")
+
+  joinedAt  DateTime @default(now())
+}
+
+model Confession {
+  id  String @id @default(uuid())
+
+  text  String?
+  audioUrl  String?
+
+  user  User @relation(name: "ConfessionOwner", fields: [userId], references: [id])
+  userId  String
+
+  likes ConfessionLike[] @relation(name: "Confession")
+  comments ConfessionComment[] @relation(name: "ConfessionCommentRoot")
+
+  postedAt  DateTime @default(now())
+}
+
+model ConfessionLike {
+  id  String @id @default(uuid())
+
+  user  User @relation(name: "ConfessionLiker", fields: [userId], references: [id])
+  userId  String
+
+  confession  Confession @relation(name: "Confession", fields: [confessionId], references: [id])
+  confessionId  String
+
+  createdAt   DateTime @default(now())
+}
+
+model ConfessionComment {
+  id  String @id @default(uuid())
+
+  user  User @relation(name: "ConfessionComment", fields: [userId], references: [id])
+  userId  String
+
+  confession  Confession @relation(name: "ConfessionCommentRoot", fields: [confessionId], references: [id])
+  confessionId  String
+
+  createdAt   DateTime @default(now())
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
