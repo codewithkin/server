@@ -4,7 +4,7 @@ import prisma from "../../helpers/prisma";
 export default async function createConfession(c: Context) {
     try {
         // Get the creator id
-        const body = c.req.json() as any;
+        const body = await c.req.json() as any;
 
         const type = body.type;
         const text = body.text;
