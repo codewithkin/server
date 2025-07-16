@@ -14,11 +14,11 @@ export default async function likeConfession(c: Context) {
             }
         })
 
-        c.json(like);
+        return c.json(like);
     } catch (e) {
         console.log("An error occured while liking confession: ", e);
 
-        c.json({
+        return c.json({
             message: "An error occured while liking confession"
         }, 400)
     }
