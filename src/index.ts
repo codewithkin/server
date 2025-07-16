@@ -3,6 +3,7 @@ import getConfessions from './controllers/confessions/getConfessions'
 import createConfession from './controllers/confessions/createConfession';
 import { logger } from "hono/logger";
 import { cors } from "hono/cors";
+import likeConfession from './controllers/confessions/likeConfession';
 
 const app = new Hono()
 
@@ -15,5 +16,6 @@ app.use("*", cors({
 // Routes
 app.post("/api/openconfess/confessions", createConfession);
 app.get("/api/openconfess/confessions", getConfessions);
+app.get("/api/openconfess/confessions/like", likeConfession);
 
 export default app
