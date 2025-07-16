@@ -4,7 +4,7 @@ import prisma from "../../helpers/prisma";
 export default async function unlikeConfession(c: Context) {
     try {
         // Get the confession id and creatorName
-        const { confessionId, creatorName } = await c.req.json();
+        const { confessionId, creatorName } = c.req.param as any;
 
         // Get the like
         const like = await prisma.confessionLike.findFirst({
