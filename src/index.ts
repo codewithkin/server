@@ -16,6 +16,6 @@ app.use("*", cors({
 // Routes
 app.post("/api/openconfess/confessions", createConfession);
 app.get("/api/openconfess/confessions", getConfessions);
-app.get("/api/openconfess/confessions/like", likeConfession);
+app.post("/api/openconfess/confessions/like", likeConfession);
 
 export default app
