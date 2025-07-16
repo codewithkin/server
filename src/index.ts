@@ -9,7 +9,7 @@ const app = new Hono()
 app.use("*", logger())
 
 // Routes
-app.post("/api/open/confessions", createConfession);
-app.get("/api/open/confessions", getConfessions);
+app.post("/api/openconfess/confessions", createConfession);
+app.get("/api/openconfess/confessions", getConfessions);
 
 export default app
