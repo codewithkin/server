@@ -4,7 +4,12 @@ import prisma from "../../helpers/prisma";
 export default async function getConfessions(c: Context) {
     try {
         // Get the confessions
-        const confessions = await prisma.confession.findMany();
+        const confessions = await prisma.confession.findMany({
+            include: {
+                likes: true,
+                comments: true
+            }
+        });
 
         return c.json(confessions);
     } catch (e) {
