@@ -3,6 +3,7 @@ import prisma from "../../helpers/prisma";
 
 export default async function getConfessions(c: Context) {
     try {
+
         // Get the confessions
         const confessions = await prisma.confession.findMany({
             include: {
