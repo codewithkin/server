@@ -10,7 +10,7 @@ export default async function createConfession(c: Context) {
         const text = body.text;
         const audioUrl = body.audioUrl;
 
-        console.log("Reuqest body: ", body);
+        console.log("Request body: ", body);
 
         // Build an obj to pass to prisma
         const data: any = {
@@ -23,7 +23,6 @@ export default async function createConfession(c: Context) {
         } else if (type == "audio") {
             data.text = text
         }
-
 
         // Create a new confession in the db
         const newConfession = await prisma.confession.create({
