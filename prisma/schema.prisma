@@ -9,7 +9,7 @@ model Confession {
   text  String?
   audioUrl  String?
 
-  creatorId  String
+  creatorName  String
 
   likes ConfessionLike[] @relation(name: "Confession")
   comments ConfessionComment[] @relation(name: "ConfessionCommentRoot")
@@ -20,7 +20,7 @@ model Confession {
 model ConfessionLike {
   id  String @id @default(uuid())
 
-  creatorId String
+  creatorName String
 
   confession  Confession @relation(name: "Confession", fields: [confessionId], references: [id])
   confessionId  String
@@ -31,7 +31,7 @@ model ConfessionLike {
 model ConfessionComment {
   id  String @id @default(uuid())
 
-  creatorId String
+  creatorName String
 
   confession  Confession @relation(name: "ConfessionCommentRoot", fields: [confessionId], references: [id])
   confessionId  String
@@ -48,7 +48,7 @@ model ConfessionComment {
 model ConfessionCommentLike {
   id  String @id @default(uuid())
 
-  creatorId String
+  creatorName String
 
   comment  ConfessionComment @relation(name: "ConfessionCommentLiked", fields: [commentId], references: [id])
   commentId  String
@@ -59,7 +59,7 @@ model ConfessionCommentLike {
 model ConfessionCommentComment {
    id  String @id @default(uuid())
 
-  creatorId String
+  creatorName String
 
   comment  ConfessionComment @relation(name: "ConfessionComment", fields: [commentId], references: [id])
   commentId  String

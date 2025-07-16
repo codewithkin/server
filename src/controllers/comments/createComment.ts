@@ -6,13 +6,13 @@ export default async function createComment(c: Context) {
         // Get the user's id
         const data = await c.req.json() as any
 
-        const { creatorId, confessionId, text } = data;
+        const { creatorName, confessionId, text } = data;
 
         console.log("Data ", data);
 
         const comment = await prisma.confessionComment.create({
             data: {
-                creatorId,
+                creatorName,
                 confessionId,
                 text
             }

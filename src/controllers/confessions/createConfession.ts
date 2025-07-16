@@ -14,7 +14,7 @@ export default async function createConfession(c: Context) {
 
         // Build an obj to pass to prisma
         const data: any = {
-            creatorId: body.creatorId,
+            creatorName: body.creatorName,
         }
 
         // If the confession is of type text
