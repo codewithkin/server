@@ -39,12 +39,12 @@ export default async function getConfessions(c: Context) {
 
         // Get the confessions
         const confessions = await prisma.confession.findMany({
-            where: {
-                postedAt: {
-                    gte: today,
-                    lte: tomorrow
-                }
-            },
+            // where: {
+            //     postedAt: {
+            //         gte: today,
+            //         lte: tomorrow
+            //     }
+            // },
             include: {
                 likes: true,
                 comments: true
