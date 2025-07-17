@@ -13,11 +13,7 @@ export default async function getConfession (c: Context) {
             },
             include: {
                 comments: true,
-                _count: {
-                    select: {
-                        likes: true
-                    }
-                }
+                likes: true,
             }
         });
 
