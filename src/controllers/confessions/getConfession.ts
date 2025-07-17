@@ -10,6 +10,14 @@ export default async function getConfession (c: Context) {
         const confession = await prisma.confession.findUnique({
             where: {
                 id
+            },
+            include: {
+                comments: true,
+                _count: {
+                    select: {
+                        likes: true
+                    }
+                }
             }
         });
 
