@@ -13,6 +13,9 @@ RUN bun install
 # Copy all of the source code
 COPY . .
 
+# After copying code and installing dependencies
+RUN bunx prisma generate
+
 # Expo port
 EXPOSE 8080
 
