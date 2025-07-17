@@ -7,6 +7,7 @@ export default async function createConfession(c: Context) {
         const body = await c.req.json() as any;
 
         const type = body.type;
+        const title = body.title;
         const text = body.text;
         const audioUrl = body.audioUrl;
 
@@ -15,6 +16,7 @@ export default async function createConfession(c: Context) {
         // Build an obj to pass to prisma
         const data: any = {
             creatorName: body.creatorName,
+            title
         }
 
         // If the confession is of type text
