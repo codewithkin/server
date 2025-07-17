@@ -1,6 +1,9 @@
 # SELECT the image
 FROM oven/bun:latest
 
+# Install OpenSSL (for Prisma)
+RUN apt-get update -y && apt-get install -y openssl
+
 # Set working directory
 WORKDIR /app
 
